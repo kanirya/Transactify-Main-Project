@@ -1,0 +1,6 @@
+@Transactify_HostAddress = http://localhost:5167
+
+GET {{Transactify_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
