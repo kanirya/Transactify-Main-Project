@@ -1,0 +1,429 @@
+﻿@page
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Enterprise Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* Odoo Color Scheme */
+        :root {
+            --primary: #875A7B;
+            --primary-light: #9D6B8D;
+            --primary-dark: #68465F;
+            --secondary: #21B799;
+            --secondary-light: #40C9AD;
+            --secondary-dark: #189B81;
+            --gray-100: #F8F9FA;
+            --gray-200: #E9ECEF;
+            --gray-300: #DEE2E6;
+            --gray-400: #CED4DA;
+            --gray-500: #ADB5BD;
+            --gray-600: #6C757D;
+            --gray-700: #495057;
+            --gray-800: #343A40;
+            --gray-900: #212529;
+        }
+
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 15px;
+            margin: auto;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .login-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+            .card-header::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            }
+
+        .logo {
+            margin-bottom: 15px;
+        }
+
+            .logo i {
+                font-size: 3rem;
+                color: white;
+            }
+
+        .card-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 30px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-control {
+            height: 50px;
+            padding: 10px 15px 10px 45px;
+            font-size: 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px rgba(135, 90, 123, 0.2);
+            }
+
+        .form-icon {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+
+            .password-toggle:hover {
+                color: var(--primary);
+            }
+
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+            .forgot-link:hover {
+                text-decoration: underline;
+                color: var(--primary-dark);
+            }
+
+        .btn-login {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+            .btn-login:hover {
+                background: var(--primary-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(135, 90, 123, 0.3);
+            }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+            .divider::before,
+            .divider::after {
+                content: "";
+                flex: 1;
+                border-bottom: 1px solid var(--gray-300);
+            }
+
+            .divider::before {
+                margin-right: 15px;
+            }
+
+            .divider::after {
+                margin-left: 15px;
+            }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: white;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-700);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+            .social-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .social-btn.google {
+                color: #ea4335;
+            }
+
+            .social-btn.microsoft {
+                color: #0078d4;
+            }
+
+            .social-btn.apple {
+                color: #000000;
+            }
+
+        .card-footer {
+            background-color: var(--gray-100);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .register-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .register-link:hover {
+                text-decoration: underline;
+                color: var(--primary-dark);
+            }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* Background animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+            .bg-circle:nth-child(1) {
+                width: 300px;
+                height: 300px;
+                top: -150px;
+                left: -150px;
+            }
+
+            .bg-circle:nth-child(2) {
+                width: 200px;
+                height: 200px;
+                top: 50%;
+                right: -100px;
+            }
+
+            .bg-circle:nth-child(3) {
+                width: 150px;
+                height: 150px;
+                bottom: -75px;
+                left: 10%;
+            }
+
+        /* Responsive adjustments */
+      
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="logo">
+                    <i class="bi bi-hexagon-half"></i>
+                </div>
+                <h1>Enterprise Portal</h1>
+                <p class="subtitle">Access your workspace</p>
+            </div>
+            <div class="card-body">
+                <form id="loginForm" method="post">
+                    <div class="form-group">
+                        <input type="email" id="Email" name="Email" class="form-control" placeholder="Enter your email" required>
+                        <i class="bi bi-envelope form-icon"></i>
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="Password" name="Password" class="form-control" placeholder="Enter your password" required>
+                        <i class="bi bi-lock form-icon"></i>
+                        <button type="button" class="password-toggle" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <div id="passwordError" class="error-message"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="RememberMe" name="RememberMe">
+                            <label class="form-check-label" for="RememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginButton">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="divider">or continue with</div>
+
+                <div class="social-buttons">
+                    <a href="#" class="social-btn google">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="#" class="social-btn microsoft">
+                        <i class="bi bi-microsoft"></i>
+                    </a>
+                    <a href="#" class="social-btn apple">
+                        <i class="bi bi-apple"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p class="mb-0">
+                    Don't have an account? <a href="#" class="register-link">Create Account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Password visibility toggle
+            $('#togglePassword').click(function() {
+                const passwordInput = $('#Password');
+                const icon = $(this).find('i');
+
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                }
+            });
+
+            // Simple form validation
+            $('#loginForm').submit(function(e) {
+                let isValid = true;
+                const email = $('#Email').val();
+                const password = $('#Password').val();
+
+                // Reset errors
+                $('#emailError, #passwordError').text('');
+
+                // Validate email
+                if (!email) {
+                    $('#emailError').text('Email is required');
+                    isValid = false;
+                }
+
+                // Validate password
+                if (!password) {
+                    $('#passwordError').text('Password is required');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

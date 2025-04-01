@@ -4,6 +4,8 @@ VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactify", "Transactify\Transactify.csproj", "{90868379-F023-4B6D-942B-499326A7E0AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tranactify-UI", "Tranactify-UI\Tranactify-UI.csproj", "{8F33AA09-ECAF-4BFF-B7B5-4DA9B454C387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{90868379-F023-4B6D-942B-499326A7E0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90868379-F023-4B6D-942B-499326A7E0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90868379-F023-4B6D-942B-499326A7E0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F33AA09-ECAF-4BFF-B7B5-4DA9B454C387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F33AA09-ECAF-4BFF-B7B5-4DA9B454C387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F33AA09-ECAF-4BFF-B7B5-4DA9B454C387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F33AA09-ECAF-4BFF-B7B5-4DA9B454C387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
