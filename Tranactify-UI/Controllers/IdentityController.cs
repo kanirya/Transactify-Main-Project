@@ -8,5 +8,9 @@ namespace Tranactify_UI.Controllers
         {
             return View();
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
